@@ -14,7 +14,7 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
 })
 
 const initialState = {
-  listsOfPosts: [] as Post[],
+  listOfPosts: [] as Post[],
   isLoading: false
 }
 
@@ -26,7 +26,7 @@ export const PostsSlice = createSlice({
     builder
       .addCase(fetchPosts.fulfilled, (state, action) => { // if a promise is successful
         console.log('data received!')
-        state.listsOfPosts = action.payload
+        state.listOfPosts = action.payload
         state.isLoading = false
       })
       .addCase(fetchPosts.pending, (state) => { // if a promise is pending

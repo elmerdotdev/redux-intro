@@ -10,3 +10,5 @@ export const store = configureStore({
     posts: postsReducer
   }
 })
+
+export type AppDispatch = typeof store.dispatch

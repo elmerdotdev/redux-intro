@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux"
 import { fetchPosts } from "./PostsSlice"
+import type { AppDispatch } from "../../app/store"
 
 type PostsState = {
   posts: {
@@ -10,25 +11,22 @@ type PostsState = {
 
 const Posts = () => {
   const { listOfPosts, isLoading } = useSelector((state: PostsState) => state.posts)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
 
   return (
     <div>
       <h2>Posts</h2>
-      {/* <button onClick={() => dispatch(fetchPosts())}>Fetch Posts</button> */}
+      <button onClick={() => dispatch(fetchPosts())}>Fetch Posts</button>
       <div>
         {isLoading ? (
           <div>Loading...</div>
         ) : (
-          <div>Not loading....</div>
-          // <ul>
-          //   {listOfPosts.map((post, index) => (
-          //     <li key={index}>{post.title} - {post.body}</li>
-          //   ))}
-          // </ul>
+          <ul>
+            {listOfPosts?.map((post, index) => (
+              <li key={index}>1{post.title} - {post.body}</li>
+            ))}
+          </ul>
         )}
-
-        {listOfPosts.length > 0 ? 'Theres a post' : 'Theres no post'}
       </div>
     </div>
   )
